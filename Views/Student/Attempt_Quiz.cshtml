@@ -1,0 +1,186 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Blank Page</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="~/adminlte.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body style="background-color:hsl(206,92%,94%)">
+    <!-- Site wrapper -->
+  <!-- Navbar -->
+  
+  <!--Navbar common code-->
+  @Html.Partial("~/Views/CommonStudent/Navbar.cshtml")
+
+  <!-- /.navbar -->
+  <!--sidebar common code-->
+    @Html.Partial("~/Views/CommonStudent/Sidebar.cshtml")
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <div class="content-header" style="margin-top:20px; margin-bottom:20px">
+      <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12 text-center" style="background-color:#fff">
+            <img src="~/q.jpg" />
+          </div>
+          <br />
+   
+          <!-- /.col -->
+         
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-md-12" style="border:1px solid white;background-color:#fff">
+            <!-- small box -->
+            <div class="col-md-4" style="float:left">
+                <h5><b>Summary</b></h5>
+                <h5><b>Total Question:10</b></h5>
+            </div>
+            <div class="col-md-4" style="float:left">
+                <h5><b></b> </h5>
+                <h5 style="color:red;"><b> </b></h5>
+
+            </div>
+             <div class="col-md-4"  style="float:left">
+                <h5 style="font-size:20px"><b>Remaining Time</b> </h5>
+                <table style="border:0px;">
+                                <tbody><tr>
+                                    <td colspan="8"><span id="future_date" class="style colorDefinition size_md" style="background-color: #2e6da4 !important; color: #FFFFFF;font-size: 25px;border-radius: 10px;padding:10px;font-size:30px">00<sup class="displayformat" style="font-size:13px"><i> minutes</i></sup> : 00<sup class="displayformat" style="font-size:13px"><i> seconds</i></sup></span></td>
+                                </tr>
+                            </tbody></table>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div class="col-md-12" style="padding-top:40px; width:40vw; background-color:#fff;padding:3rem 8rem;)">
+              <form action="Attempt_Quiz2" method="post">
+              <table id="example2" class="table table-bordered table-hover">
+                   <tbody>
+                        <input type="hidden" name="end_time" id="end_time" value="@Context.Session.GetString("datetime")"/>
+                       <input type="hidden" name="question_id" value="@Model.Rows[0][9]"/>
+                       <input type="hidden" name="answer" value="@Model.Rows[0][10]"/>
+                       @for (int i = 0; i < Model.Rows.Count; i++)
+                       {
+                          <tr>
+                             <td>@Model.Rows[0][11] )  @Model.Rows[i][4]</td>
+                          </tr> 
+                          <tr>
+                            <td>
+                              <input type="radio" id="option1" name="option1" class="radoption" value="A"/> @Model.Rows[i][5]
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input type="radio" id="option1" name="option1" class="radoption" value="B"/> @Model.Rows[i][6]
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input type="radio" id="option1" name="option1" class="radoption" value="C"/> @Model.Rows[i][7]
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input type="radio" id="option1" name="option1" class="radoption" value="D"/> @Model.Rows[i][8]
+                            </td>
+                          </tr>                     
+                       }
+                   </tbody>
+                </table>
+                
+                 <div class="card-footer text-center" >
+                  <button type="submit" class="" style="width:118px;padding:7px; background-color:#2e6da4;color:white; font-size:18px;">Next</button>
+                </div>
+                
+                </form>
+          </div>
+          </div>
+          </div>
+          
+          </section>
+<script>
+
+const convertTime12to24 = (time12h) => {
+  const [time, modifier] = time12h.split(' ');
+
+  let [hours, minutes] = time.split(':');
+
+  if (hours === '12') {
+    hours = '00';
+  }
+
+  if (modifier === 'PM') {
+    hours = parseInt(hours, 10) + 12;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
+$(window).on('load', function() {
+
+    const zeroPad = (num, places) => String(num).padStart(places, '0')
+
+    // Set the date we're counting down to
+    var end_time_now = $("#end_time").val();
+        
+    const myArray = end_time_now.split(" ");
+
+    var real_end_time = myArray[0] + " " + myArray[1] + ", " + myArray[2];
+    var only_time = myArray[4];  
+    var real_only_time = only_time.replace("PM", " PM");
+    var real_only_time = only_time.replace("AM", " AM");
+    var twenty_four = convertTime12to24(real_only_time);
+    var final_end_time = real_end_time + " " + twenty_four;
+
+    var countDownDate = new Date(final_end_time).getTime() + (2 * 60  * 1000) ;
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get today's date and time
+    var current_time = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
+    var now = new Date(current_time).getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      console.log(zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2) );
+
+      $('#future_date').html(zeroPad(minutes, 2) + ' <sup class="displayformat">minutes</sup> : ' + zeroPad(seconds, 2) + '<sup class="displayformat"> seconds</sup>');
+        console.log(distance);
+      if (distance < 36000000) {
+        clearInterval(x);
+        document.getElementById("future_date").innerHTML = "EXPIRED";
+          window.location = "Result";
+      }
+
+    }, 1000);
+
+});
+</script>
+</body>
+</html>

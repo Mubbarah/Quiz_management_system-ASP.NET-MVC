@@ -1,0 +1,141 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Blank Page</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="~/adminlte.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body style="background-color:hsl(206,92%,94%)">
+    <!-- Site wrapper -->
+  <!-- Navbar -->
+  
+  <!--Navbar common code-->
+  @Html.Partial("~/Views/CommonStudent/Navbar.cshtml")
+
+  <!-- /.navbar -->
+  <!--sidebar common code-->
+    @Html.Partial("~/Views/CommonStudent/Sidebar.cshtml")
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <div class="content-header" style="margin-top:20px; margin-bottom:20px">
+      <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12 text-center" style="background-color:#fff">
+            <img src="~/we.png" />
+          </div>
+          <br />
+   
+          <!-- /.col -->
+         
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-md-12" style="border:2px solid aquamarine;background-color:#fff">
+            <!-- small box -->
+            <div class="col-md-4" style="float:left">
+                <h5><b> Result Summary </b></h5>
+                <h5><b>Name : @Context.Session.GetString("user_name")</b></h5
+                <h5><b>Total Questions: 10</b></h5>
+            </div>
+            <div class="col-md-4" style="float:left">
+                <h5><b>Paper : @Context.Session.GetString("course_name") </b> </h5>
+                <h5><b>Correct Answers : @Context.Session.GetString("right_answers") </b> </h5>
+                <h5 style="color:red;"><b>Incorrect Answers : @Context.Session.GetString("wrong_answers")</b></h5>
+
+            </div>
+            @if (@Context.Session.GetInt32("right_answers22") >= 5)
+            {
+               <div class="col-md-4"  style="float:left">
+                <h5 style="font-size:23;px;width: 88px;margin: 17px;" class="alert alert-success"><b> PASS </b> </h5>
+                                
+                </div>             
+            }
+            else
+            {
+               <div class="col-md-4"  style="float:left">
+                <h5 style="font-size:23px;width: 88px;margin: 17px;" class="alert alert-danger"><b> FAIL </b> </h5>
+                                
+               </div>             
+            }
+          </div>
+          <br />
+          <br />
+
+          <div class="col-md-12" style="padding-top:40px; width:40vw; background-color:#fff;padding:3rem 8rem;)">
+               <form action="Result" method="post">
+                   
+                       @for (int i = 0; i < Model.Rows.Count; i++)
+                       {
+                          
+                             <b>  @Model.Rows[i][3] ?</b>
+                             <p>&nbsp;</p>
+                        
+                         
+                              <p>Option A) : @Model.Rows[i][4]</p>
+                         
+                              <p>Option B) : @Model.Rows[i][5]</p>
+                           
+                              <p> Option C) : @Model.Rows[i][6]</p>
+                                <p>Option D) : @Model.Rows[i][7]</p>
+                                if (@Model.Rows[i][2] == 1) {
+                                    <p class="alert alert-success">
+                                        <span class="fa fa-check-square-o">
+
+                                        </span>
+                                        "&nbsp;Your Answer : " 
+                                        <b>@Model.Rows[i][1]</b>
+                                    </p>
+                                }else{
+                                    <p class="alert alert-danger">
+                                       <span class="fa fa-times-circle">
+
+                                       </span>
+                                       "&nbsp;Your Answer : " 
+                                        <b>@Model.Rows[i][1]</b>
+                                   </p>
+                                }
+                               <p class="">
+                                   <span class="fa fa-check-square-o text-success">
+
+                                   </span>
+                                   "&nbsp;Correct Answer : " 
+                                    <b>@Model.Rows[i][8]</b>
+                               </p>
+                           @Html.ViewData["Message"]
+                       }
+                   
+                    </form>  
+                    
+                <div style="text-align:center;">
+                
+                </div>
+                @Html.ViewData["Message"]
+   
+          </div>
+          </div>
+          </div>
+          
+          </section>
+</body>
+</html>
+

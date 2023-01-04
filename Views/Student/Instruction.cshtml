@@ -1,0 +1,128 @@
+﻿@{  
+    var course_id = ViewBag.course_id;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Blank Page</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="~/adminltee.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body class="hold-transition sidebar-mini" style="background-image:url()">
+<!-- Site wrapper -->
+  <!-- Navbar -->
+  
+  <!--Navbar common code-->
+  @Html.Partial("~/Views/CommonStudent/Navbar.cshtml")
+
+  <!-- /.navbar -->
+  <!--sidebar common code-->
+    @Html.Partial("~/Views/CommonStudent/Sidebar.cshtml")
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12 text-center">
+            <img src="~/ins.png" />
+          </div>
+          <br />
+   
+          <!-- /.col -->
+         
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- small box -->
+           <h4 style="font-family:Britannic;text-align:center">Read the instruction of this page  carefully..</h4>
+           <h6 style="text-align:center">One step more to go..</h6>
+         
+           <h2 style="font-family:Britannic;color:darkmagenta;">English Quiz</h2>
+           <h6 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">This Quiz Contain Questions Related to English.</h6>
+           <hr />
+           <h3 style="font-family:Britannic">Important Instructions</h3>
+           <ul>
+               <li>You Have <b>3 Level </b>in this Quiz</li>
+               <li>You are complete Every level Subjects passed at <b>60% </b> you can go to the next level Otherwise not</li>
+               <li>You have to submit quiz with in <b>10 Minutes</b></li>
+               <li>You will have only <b>1 Minute</b>  per each question </li>
+               <li>There are <b>10 Questions</b> in this Quiz</li>
+               <li>Each Questions carries <b>5 Mark</b></li>
+               <li>All Question is of <b>MCQS</b> Type</li>  
+           </ul>
+           <hr />
+           <h3 style="font-family:Britannic">Attempting Quiz</h3>
+           <ul>
+               <li>Click <b>StartQuiz</b> button to start the Quiz</li>
+               <li>The time Will Start the moment you click the Start Test button</li>
+               <li>You can not resume this Quiz, if Interrupted due to any reason</li>
+               <li>Click the Next to Next Question</li>
+               <li>Click on Submit Quiz button on completion of the Quiz</li>
+           </ul>
+                <div style="text-align:center">
+               <a  asp-area="" asp-controller="Student" asp-action="Attempt_Quiz" class = " btn btn-primary"> Start Quiz</a>
+                </div>
+          </div>
+          <!-- ./col -->
+         
+          <!-- ./col -->
+          
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-7 connectedSortable">
+            <!-- /.card -->
+            </section>
+            </div>
+            </section>
+            </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-7 connectedSortable">
+            <!-- /.card -->
+            </section>
+            </div>
+            </section>
+            </div>
+            <!----->
+        <div class="row">
+
+        </div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+</body>
+</html>
+    
+
+
